@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Device Pairing | Next-Gen Auth</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="card">
+    <h1 class="center">Device Pairing</h1>
+    <p class="center">
+      Scan this QR code in your <strong>Next-Gen Auth</strong> mobile app
+      to link your device.
+    </p>
+
+    <div class="qr-box">
+      <div id="qrcode"></div>
+
+      <div>
+        <h3 class="center">Secret for this user:</h3>
+        <p id="secretText" class="center">Loading...</p>
+      </div>
+    </div>
+
+    <p class="link center">
+      After pairing, you can <a href="login.html">go to Login</a>.
+    </p>
+  </div>
+
+  <!-- QRCode.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    // Read "secret" from URL query parameters
+    const params = new URLSearchParams(window.location.search);
+    const secret = params.get('secret');
+
+    const secretText = document.getElementById('secretText');
+    const qrContainer = document.getElementById('qrcode');
+
+    if (secret) {
+      secretText.textContent = secret;
+
+      // Create a QR code from the secret
+      new QRCode(qrContainer, {
+        text: secret, // later can be changed to otpauth:// URI
+        width: 200,
+        height: 200,
+      });
+    } else {
+      secretText.textContent = 'No secret found in URL.';
+      qrContainer.innerHTML = '<p>Cannot generate QR without secret.</p>';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Login | Next-Gen Auth</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="card">
+    <h1 class="center">User Login</h1>
+    <p class="center">
+      Enter your <strong>username</strong> and the
+      <strong>dynamic password</strong> from your mobile app.
+    </p>
+
+    <form id="loginForm">
+      <label for="loginUsername">Username</label>
+      <input type="text" id="loginUsername" required />
+
+      <label for="dynamicPassword">Dynamic Password (from mobile app)</label>
+      <input type="text" id="dynamicPassword" required />
+
+      <button type="submit">Login</button>
+    </form>
+
+    <p class="link">
+      New user?
+      <a href="registration.html">Go to Registration</a>
+    </p>
+
+    <p id="loginMessage" class="message"></p>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>
